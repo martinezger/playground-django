@@ -15,9 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from hola_mundo.views import saludar
+from hola_mundo.views import saludar, saludar_a, sumar, mostrar_mis_tareas
+from SocialTravel.views import index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('hola-mundo/saludar', saludar),
+    path('hola-mundo/suludar-a/<alguien>', saludar_a),
+    path('hola-mundo/sumar/<int:a>/<int:b>', sumar),
+    path('mis-tareas/<criterio>', mostrar_mis_tareas, name="mis-tareas"),
+    path('', index),
 ]
