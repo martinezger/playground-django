@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from hola_mundo.views import saludar, saludar_a, sumar, mostrar_mis_tareas, mostrar_personas
+from hola_mundo.views import( saludar, saludar_a, sumar, 
+mostrar_mis_tareas, mostrar_personas, buscar_personas, BuscarPersona)
 from SocialTravel.views import index
 
 urlpatterns = [
@@ -26,5 +27,6 @@ urlpatterns = [
     path('hola-mundo/sumar/<int:a>/<int:b>', sumar),
     path('mis-tareas/<criterio>', mostrar_mis_tareas, name="mis-tareas"),
     path('personas', mostrar_personas, name="personas"),
+    path('personas/buscar', buscar_personas, name="personas-buscar")
     
 ]
