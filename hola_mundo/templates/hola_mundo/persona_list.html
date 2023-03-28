@@ -5,10 +5,14 @@
 
 {%block listado%}
 
-<form action="{% url 'personas-create' %}" method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="Guardar">
+<form>
+    <p>
+        <label for="criterio_nombre">Criterio:</label>
+        <input type="text" name="criterio_nombre" maxlength="100" required="" id="criterio_nombre">   
+      </p> 
+      <p>
+        <input type="submit" value="Buscar">
+      </p>
 </form>
 
 <ul>
