@@ -1,0 +1,10 @@
+{% extends "SocialTravel/base.html" %}
+
+{% block main %}
+<h1>Estas seguro que queres borrar el post {{object.heading}}?</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value="Borrar">
+</form>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "SocialTravel/base.html" %}
+
+{% block main %}
+<p>
+    {{object.heading}}
+    <br>
+    {{object.description}}
+    <br>
+    <a href="{% url 'post-list' %}"> volver</a>
+</p>
+{% endblock %}

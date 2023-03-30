@@ -1,0 +1,13 @@
+{% extends "SocialTravel/base.html" %}
+
+{% block main %}<ul>
+    {% for post in object_list  %}
+    <li>
+        {{post}} 
+        <a href="{% url 'post-detail' post.id %}" > Detalle</a>
+        <a href="{% url 'post-update' post.id %}" > Actualizar</a>
+        <a href="{% url 'post-delete' post.id %}" > Borrar</a>
+    </li>
+    {% endfor %}
+    </ul>
+{% endblock %}
