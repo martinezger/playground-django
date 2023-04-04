@@ -65,9 +65,18 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'post-list' %}">Mis Post</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" href="https://getbootstrap.com/docs/5.0/examples/carousel/#" tabindex="-1" aria-disabled="true">Disabled</a>
-              </li>
+              {% if user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'logout' %}"> {{user.username}} | Logout</a>
+                </li>
+              {% else %}  
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'signup' %}">Registrarme</a>
+                </li>
+              {% endif %}
             </ul>
             <form class="d-flex">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

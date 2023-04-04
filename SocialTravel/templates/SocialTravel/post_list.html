@@ -1,12 +1,15 @@
 {% extends "SocialTravel/base.html" %}
 
 {% block main %}<ul>
+    <h1> Lista de Posts</h1>
     {% for post in object_list  %}
     <li>
         {{post}} 
         <a href="{% url 'post-detail' post.id %}" > Detalle</a>
-        <a href="{% url 'post-update' post.id %}" > Actualizar</a>
-        <a href="{% url 'post-delete' post.id %}" > Borrar</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'post-update' post.id %}" > Actualizar</a>
+            <a href="{% url 'post-delete' post.id %}" > Borrar</a>
+        {% endif %}
     </li>
     {% endfor %}
     </ul>

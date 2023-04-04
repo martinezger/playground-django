@@ -1,0 +1,20 @@
+{% extends "SocialTravel/base.html" %}
+
+{% block main %}
+<h1> Registro de Usuario </h1>
+
+<form method="POST">
+{% csrf_token %}
+{% for field in form %}
+    <p class="fieldWrapper">
+        {{ field.errors }}
+        {{ field.label_tag }} {{ field }}
+        {% if field.help_text %}
+            <p class="help">{{ field.help_text|safe }}</p>
+        {% endif %}
+    </p>
+{% endfor %}
+<input type="submit" value="Registrarme">
+</form>
+
+{% endblock %}

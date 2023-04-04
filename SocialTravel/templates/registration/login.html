@@ -1,0 +1,17 @@
+{% extends "SocialTravel/base.html" %}
+
+{% block main %}
+<h1> Acceso al Sistema </h1>
+
+<form method="POST">
+{% csrf_token %}
+{% for field in form %}
+    <p class="fieldWrapper">
+        {{ field.errors }}
+        {{ field.label_tag }} {{ field }}
+    </p>
+{% endfor %}
+<input type="submit" value="Ingresar">
+</form>
+
+{% endblock %}

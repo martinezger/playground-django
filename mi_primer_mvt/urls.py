@@ -19,7 +19,7 @@ from hola_mundo.views import (saludar, saludar_a, sumar,
             mostrar_mis_tareas, mostrar_personas, crear_persona, BuscarPersonas)
 from SocialTravel.views import (index, PostList, 
                                 PostDetail, PostCreate, PostUpdate,
-                                PostDelete)
+                                PostDelete, SignUp, Login, Logout)
 
 urlpatterns = [
     path('', index, name="index"),
@@ -36,4 +36,7 @@ urlpatterns = [
     path('post/create', PostCreate.as_view(), name="post-create"),
     path('post/<pk>/update', PostUpdate.as_view(), name="post-update"),
     path('post/<pk>/delete', PostDelete.as_view(), name="post-delete"),
+    path('signup/', SignUp.as_view(), name="signup"),
+    path('login/', Login.as_view(), name="login"),
+    path('logout/', Logout.as_view(), name="logout"),
 ]
