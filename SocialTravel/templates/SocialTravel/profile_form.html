@@ -1,6 +1,7 @@
 {% extends "SocialTravel/base.html" %}
 
 {% block main %}
+<h1>PROFILE </h1>
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{form.as_p}}

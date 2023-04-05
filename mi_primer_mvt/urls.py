@@ -19,7 +19,11 @@ from hola_mundo.views import (saludar, saludar_a, sumar,
             mostrar_mis_tareas, mostrar_personas, crear_persona, BuscarPersonas)
 from SocialTravel.views import (index, PostList, 
                                 PostDetail, PostCreate, PostUpdate,
-                                PostDelete, SignUp, Login, Logout)
+                                PostDelete, SignUp, Login, Logout,
+                                ProfileUpdate)
+
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', index, name="index"),
@@ -39,4 +43,7 @@ urlpatterns = [
     path('signup/', SignUp.as_view(), name="signup"),
     path('login/', Login.as_view(), name="login"),
     path('logout/', Logout.as_view(), name="logout"),
+    path('profile/<pk>/update', ProfileUpdate.as_view(), name="profile-update"),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
