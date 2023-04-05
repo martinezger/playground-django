@@ -1,7 +1,7 @@
 {% extends "SocialTravel/base.html" %}
 
 {% block main %}
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{form.as_p}}
     <input type="submit" value="Guardar">

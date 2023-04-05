@@ -1,9 +1,13 @@
 {% extends "SocialTravel/base.html" %}
 
 {% block main %}
+{% if mensaje %}
+    <div class="alert alert-danger" role="alert">
+        {{mensaje}}
+    </div>
+{% endif %}
 <h1> Acceso al Sistema </h1>
-
-<form method="POST">
+<form action="{% url 'login' %}" method="POST">
 {% csrf_token %}
 {% for field in form %}
     <p class="fieldWrapper">

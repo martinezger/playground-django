@@ -1,10 +1,14 @@
 {% extends "SocialTravel/base.html" %}
 
 {% block main %}
+<h1>{{object.heading}}</h1>
 <p>
-    {{object.heading}}
     <br>
     {{object.description}}
+    <br>
+    {% if object.imagen %}
+        <img src="{{object.imagen.url}}" height="100%" width="320px">
+    {% endif %}
     <br>
     <a href="{% url 'post-list' %}"> volver</a>
 </p>

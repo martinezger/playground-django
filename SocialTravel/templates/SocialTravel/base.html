@@ -53,6 +53,9 @@
     <header>
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
+          {% if user.profile.imagen %}
+            <img src="{{user.profile.imagen.url}}" height="100%", width="24px" style="border-radius: 50%; margin-right: 10px;">
+          {% endif %}
           <a class="navbar-brand" href="{% url 'index' %}">Social Travel</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -86,9 +89,10 @@
         </div>
       </nav>
     </header>
-
+    <main>
     {% block main %}
     {% endblock %}
+    </main>
     
     <!-- FOOTER -->
   <footer class="container">
