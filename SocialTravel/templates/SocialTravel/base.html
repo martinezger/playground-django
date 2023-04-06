@@ -53,7 +53,7 @@
     <header>
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
-          {% if user.profile.image %}  
+          {% if user.profile.imagen %}  
             <a href="{% url 'profile-update' user.profile.id %}">
             <img src="{{user.profile.imagen.url}}" height="100%" width="36px" style="border-radius: 50%; margin-right:10px">
             </a>
