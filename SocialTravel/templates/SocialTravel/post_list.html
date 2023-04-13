@@ -2,6 +2,11 @@
 
 {% block main %}<ul>
     <h1> Lista de Posts</h1>
+
+    {% if  not posts %}
+        <h2>NO HAY POST</h2>
+    {%endif %}
+
     {% for post in object_list  %}
     <li>
         {{post}} 

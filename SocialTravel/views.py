@@ -1,16 +1,24 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from SocialTravel.models import Post, Profile
+from SocialTravel.models import Post, Profile, Mensaje
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
+
+def about(request):
+    return render(request, "SocialTravel/about.html")
+
 def index(request):
-    return render(request, "SocialTravel/index.html")
+    context = {
+        "posts": Post.objects.all()
+    }
+    return render(request, "SocialTravel/index.html", context)
 
 class PostList(ListView):
     model = Post
+    context_object_name = "posts"
 
 class PostDetail(DetailView):
     model = Post
@@ -18,7 +26,13 @@ class PostDetail(DetailView):
 class PostCreate(LoginRequiredMixin, CreateView):
     model = Post
     success_url = reverse_lazy("post-list")
-    fields = '__all__'
+    fields = ['carousel_caption_title','carousel_caption_description',
+                'heading','description','imagen']
+
+
+    def form_valid(self, form):
+        form.instance.publisher = self.request.user
+        return super().form_valid(form)
 
 class PostUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
@@ -63,3 +77,26 @@ class ProfileUpdate(UpdateView):
     model = Profile
     fields = '__all__'
 
+
+class MensajeCreate(CreateView):
+    model = Mensaje
+    fields = '__all__'
+    success_url = reverse_lazy("post-list")
+
+
+class  MensajeList(LoginRequiredMixin, ListView):
+    model = Mensaje
+    context_object_name = "mensajes"
+    
+    def get_queryset(self):
+        return Mensaje.objects.filter(destinatario=self.request.user.id).all()
+    
+
+class MensajeDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model= Mensaje
+    success_url = reverse_lazy("mensaje-list")
+
+    def test_func(self):
+        user_id = self.request.user.id
+        mensaje_id = self.kwargs.get('pk')
+        return Mensaje.objects.filter(destinatario=user_id).exists()

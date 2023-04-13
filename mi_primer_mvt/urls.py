@@ -20,7 +20,7 @@ from hola_mundo.views import (saludar, saludar_a, sumar,
 from SocialTravel.views import (index, PostList, 
                                 PostDetail, PostCreate, PostUpdate,
                                 PostDelete, SignUp, Login, Logout,
-                                ProfileUpdate)
+                                ProfileUpdate, MensajeCreate, MensajeDelete, MensajeList)
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -44,6 +44,9 @@ urlpatterns = [
     path('login/', Login.as_view(), name="login"),
     path('logout/', Logout.as_view(), name="logout"),
     path('profile/<pk>/update', ProfileUpdate.as_view(), name="profile-update"),
+    path('mensaje/create', MensajeCreate.as_view(), name="mensaje-create"),
+    path('mensaje/list', MensajeList.as_view(), name="mensaje-list"),
+    path('mensaje/<pk>/delete', MensajeDelete.as_view(), name="mensaje-delete"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
